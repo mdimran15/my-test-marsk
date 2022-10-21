@@ -59,6 +59,23 @@ public class ClientTest {
 
     }
 
+    @Test
+    public void testGetOrderValue4() {
+
+        OrderITem orderITem = new OrderITem(new Product("A", 50), 1);
+        OrderITem orderITem2 = new OrderITem(new Product("B", 30), 1);
+        OrderITem orderITem3 = new OrderITem(new Product("C", 20), 1);
+        List<OrderITem> orderITemList = new ArrayList<>();
+        orderITemList.add(orderITem);
+        orderITemList.add(orderITem2);
+        orderITemList.add(orderITem3);
+        Order order = new Order();
+        order.setOrderITemList(orderITemList);
+        Assertions.assertEquals(100, new Client().getOrderValue(order, "offer1"));
+
+
+    }
+
 
     private List<Product> prepareProduct() {
         List<Product> products = new ArrayList<>();
