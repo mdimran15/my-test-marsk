@@ -14,7 +14,12 @@ public class Offer {
     public static Map<String, OfferMetaInfo> getCouponMap(String coupon) {
 
         if (map.size() == 0) {
-            Offer.loadOffer();
+            try {
+                lock.lock();
+                Offer.loadOffer();
+            }finally {
+                lock.unlock();
+            }
         }
         return map.get(coupon);
     }
